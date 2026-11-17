@@ -82,7 +82,6 @@ input,select{font-family:inherit}
 .header{position:sticky;top:0;z-index:60;padding:calc(var(--safe-t) + 16px) 20px 14px;display:flex;align-items:center;gap:10px;background:var(--bg);transition:background var(--dur)}
 .header-left{flex:1;min-width:0}
 .header-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.4px;color:var(--text);line-height:1}
-.header-plan{font-size:12px;font-weight:500;color:var(--t2);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hbtn.on{background:var(--accent-s);color:var(--accent)}
 .sync-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--bg);display:none}
 .sync-dot.show{display:block}
@@ -108,25 +107,19 @@ input,select{font-family:inherit}
 @keyframes rowStagger{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-@keyframes ripple{from{transform:scale(0);opacity:.35}to{transform:scale(4);opacity:0}}
 /* ── EXERCISE ROW PRESS ─────────────────────────────────────────────── */
 .ex-row{display:flex;align-items:center;padding:0 20px;min-height:78px;gap:14px;cursor:pointer;position:relative;overflow:hidden;transition:background var(--dur);touch-action:manipulation;will-change:transform}
 .ex-row:active{background:var(--s2)}
 /* ── RIPPLE BASE ─────────────────────────────────────────────────────── */
-.ripple-el{position:relative;overflow:hidden}
-.ripple-el::after{content:'';position:absolute;border-radius:50%;background:currentColor;opacity:0;width:60px;height:60px;margin-top:-30px;margin-left:-30px;top:50%;left:50%;transform:scale(0);pointer-events:none}
-.ripple-el:active::after{animation:ripple .5s var(--ease-out)}
 /* ── CATEGORY COLLAPSE ───────────────────────────────────────────────── */
 .cat-body{overflow:hidden;transition:max-height .42s var(--ease-out),opacity .3s var(--ease)}
 .cat-body.collapsed{max-height:0!important;opacity:0}
 /* ── SWATCH PRESS ────────────────────────────────────────────────────── */
 .swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .26s var(--spring)}
-.swatch.active{transform:scale(1.14)}
 .swatch:active{transform:scale(.86)}
 /* ── HBTN SPRING ─────────────────────────────────────────────────────── */
 .hbtn{position:relative;width:44px;height:44px;border-radius:var(--r-full);background:var(--s2);border:none;color:var(--t2);display:flex;align-items:center;justify-content:center;transition:background var(--dur),color var(--dur),transform .2s var(--spring);flex-shrink:0;will-change:transform}
 .hbtn:active{transform:scale(.82);background:var(--s3)}
-.hbtn.on{background:var(--accent-s);color:var(--accent)}
 /* ── SETTINGS ROW PRESS ──────────────────────────────────────────────── */
 .sp-row{display:flex;align-items:center;padding:16px 20px;gap:14px;min-height:56px;transition:background var(--dur),transform .18s var(--spring);will-change:transform}
 .sp-row:not(:last-child){border-bottom:1px solid var(--div)}
@@ -138,13 +131,9 @@ input,select{font-family:inherit}
 .add-set-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:var(--s2);border-radius:var(--r-lg);color:var(--accent);font-size:14px;font-weight:600;transition:background var(--dur),transform .2s var(--spring)}
 .add-set-btn:active{background:var(--accent-s);transform:scale(.96)}
 /* ── WEIGHT VALUE SPRING ─────────────────────────────────────────────── */
-.wval-bump{animation:wBump .28s var(--spring)}
-@keyframes wBump{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 /* ── SEC-HEAD COLLAPSE BTN ───────────────────────────────────────────── */
 .sec-collapse-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--t3);transition:background var(--dur),transform .3s var(--spring);flex-shrink:0}
 .sec-collapse-btn:active{background:var(--s3);transform:scale(.85)}
-.sec-collapse-btn .mi{transition:transform .32s var(--spring)}
-.sec-collapse-btn.open .mi{transform:rotate(180deg)}
 /* ── EXERCISE SEARCH ─────────────────────────────────────────────────── */
 .ex-search-wrap{position:relative;margin-bottom:10px}
 .ex-search-in{width:100%;background:var(--s2);border:none;border-radius:var(--r-lg);padding:11px 16px 11px 40px;color:var(--text);font-size:15px;outline:none;-webkit-appearance:none;font-family:var(--font);transition:box-shadow var(--dur)}
@@ -177,7 +166,7 @@ input,select{font-family:inherit}
 .ls-ex-badge{font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-s);border-radius:var(--r-full);padding:3px 9px;flex-shrink:0}
 .ls-ex-badge.ready{color:var(--green);background:var(--green-s)}
 .ls-rtabs{display:flex;padding:7px 10px;gap:5px;border-bottom:1px solid var(--div);flex-shrink:0}
-.ls-rtab{flex:1;padding:6px;border-radius:var(--r-lg);font-size:12px;font-weight:600;color:var(--t2);background:var(--accent-xs);transition:all var(--dur)}
+.ls-rtab{flex:1;min-width:0;padding:6px;border-radius:var(--r-lg);font-size:12px;font-weight:600;color:var(--t2);background:var(--accent-xs);transition:all var(--dur);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ls-rtab.active{background:var(--accent);color:#fff}
 .ls-session{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:7px}
 .ls-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--t3);font-size:12px;text-align:center;padding:16px}
@@ -226,9 +215,8 @@ input,select{font-family:inherit}
 .weekly-count{font-size:12px;font-weight:700;color:var(--t2);width:34px;text-align:right;flex-shrink:0}
 .weekly-total{font-size:11px;font-weight:600;color:var(--t3);text-align:right;padding-top:8px;border-top:1px solid var(--div);margin-top:6px}
 /* ── EDIT BANNER ENTER ───────────────────────────────────────────────── */
-body.em .edit-banner{animation:fadeUp .3s var(--spring)}
+body.em .edit-banner{display:block;animation:fadeUp .3s var(--spring)}
 .edit-banner{display:none;text-align:center;background:var(--amber-s);padding:10px;font-size:12px;font-weight:700;letter-spacing:.4px;color:var(--amber)}
-body.em .edit-banner{display:block}
 /* ── SCROLL CONTENT ─────────────────────────────────────────────────── */
 .scroll-content{padding:8px 0 calc(var(--safe-b) + 32px)}
 /* ── SECTION HEADER ─────────────────────────────────────────────────── */
@@ -304,7 +292,6 @@ body.em .add-ex-row{display:flex}
 .add-cat-row:active{background:var(--s2)}
 body.em .add-cat-row{display:flex}
 /* ── DRAG GHOST ─────────────────────────────────────────────────────── */
-.drag-ghost{position:fixed;pointer-events:none;z-index:999;opacity:.85;border-radius:var(--r-xl);background:var(--s1)}
 /* ── TIMER SCREEN ───────────────────────────────────────────────────── */
 .timer-screen{display:flex;flex-direction:column;align-items:center;padding:48px 24px calc(var(--safe-b) + 40px)}
 .timer-display{font-size:80px;font-weight:200;letter-spacing:-5px;font-variant-numeric:tabular-nums;line-height:1;color:var(--text);font-feature-settings:'tnum'}
@@ -319,14 +306,7 @@ body.em .add-cat-row{display:flex}
 .t-sec .mi{font-size:26px}
 .t-sec:disabled{opacity:.3}
 .wake-badge{display:flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--r-full);background:var(--s2);font-size:12px;font-weight:600;color:var(--t3);margin-bottom:24px}
-.wake-badge.active{color:var(--accent);background:var(--accent-s)}
 .wake-badge.active{color:var(--green);border-color:rgba(94,201,122,.3);background:var(--green-s)}
-.laps-wrap{width:100%;max-width:360px;background:var(--s1);border-radius:var(--r-xl);overflow:hidden}
-.lap-row{display:flex;align-items:center;padding:13px 20px;gap:12px;border-bottom:1px solid var(--div)}
-.lap-row:last-child{border-bottom:none}
-.lap-num{font-size:12px;font-weight:700;color:var(--t3);width:44px}
-.lap-time{flex:1;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
-.lap-split{font-size:13px;color:var(--t2);font-variant-numeric:tabular-nums}
 /* ── WEIGHT INPUT MODAL ─────────────────────────────────────────────── */
 .w-input-row{display:flex;align-items:center;gap:10px;padding:0 0 16px}
 .w-input-field{flex:1;background:var(--s2);border:none;border-radius:var(--r-lg);padding:14px 16px;color:var(--text);font-size:28px;font-weight:700;outline:none;-webkit-appearance:none;appearance:none;text-align:center;font-family:var(--font);transition:box-shadow var(--dur)}
@@ -348,15 +328,12 @@ body.em .add-cat-row{display:flex}
 .wbtn{width:38px;height:38px;border-radius:50%;background:var(--s2);border:1px solid var(--div2);color:var(--text);display:flex;align-items:center;justify-content:center;transition:transform var(--dur) var(--spring),background var(--dur);flex-shrink:0}
 .wbtn:active{transform:scale(.88);background:var(--s3)}
 .wbtn .mi{font-size:20px}
-.wbtn.big{width:42px;height:42px;background:var(--s3)}
-.wbtn.big .mi{font-size:22px}
 .ss-wval{min-width:96px;text-align:center;font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-.5px;cursor:pointer;padding:8px 10px;border-radius:var(--r-md);transition:background var(--dur)}
 .ss-wval:active{background:var(--accent-s)}
 .ss-wval-hint{font-size:10px;font-weight:700;text-align:center;color:var(--t3);letter-spacing:.4px}
 /* Progress banner */
 .ss-prog{overflow:hidden;max-height:0;opacity:0;transition:max-height .36s var(--spring),opacity .28s var(--ease);margin:0 20px;border-radius:var(--r-md)}
 .ss-prog.show{max-height:80px;opacity:1}
-.ss-prog-inner{padding:11px 14px;background:var(--green-s);border-radius:var(--r-md);display:flex;align-items:center;gap:10px;flex-shrink:0}
 .ss-prog-txt{flex:1;font-size:13px;font-weight:700;color:var(--green)}
 /* Ghost */
 .ss-ghost{margin:10px 20px 0;padding:10px 14px;background:var(--s2);border-radius:var(--r-md);flex-shrink:0}
@@ -398,8 +375,6 @@ body.em .add-cat-row{display:flex}
 .sheet-title{flex:1;text-align:center;font-size:16px;font-weight:700;letter-spacing:-.2px}
 .sheet-cancel{color:var(--t2);font-size:15px;padding:4px;min-width:56px;transition:opacity var(--dur)}
 .sheet-cancel:active{opacity:.5}
-.sheet-done{color:var(--accent);font-size:15px;font-weight:700;padding:4px;min-width:56px;text-align:right;transition:opacity var(--dur)}
-.sheet-done:active{opacity:.5}
 .act-list{padding:12px 16px 6px;display:flex;flex-direction:column;gap:4px}
 .act{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--s2);border-radius:var(--r-lg);font-size:15px;font-weight:500;color:var(--text);text-align:left;width:100%;transition:background var(--dur),transform .16s var(--spring);transform-origin:center;opacity:0;animation:actIn .3s var(--spring) forwards}
 @keyframes actIn{from{opacity:0;transform:scale(.95) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
@@ -487,9 +462,6 @@ body.em .add-cat-row{display:flex}
 .chart-day-body{border-top:1px solid var(--div);padding:16px 14px 20px;display:none}
 .chart-day-body.open{display:block}
 .chart-no-data{font-size:13px;color:var(--t3);text-align:center;padding:24px 0}
-.chart-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px}
-.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--t2)}
-.chart-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 /* ── PLAN MANAGEMENT ─────────────────────────────────────────────────── */
 .plan-row{display:flex;align-items:center;gap:8px;padding:15px 20px}
 .plan-row+.plan-row{border-top:1px solid var(--div)}
@@ -512,7 +484,6 @@ body.em .add-cat-row{display:flex}
 .timer-pill.hide{animation:pillShrink .22s cubic-bezier(.4,0,1,1) forwards}
 .timer-pill:active{transform:scale(.88)}
 .timer-pill .mi{font-size:30px}
-.hg-svg{width:30px;height:30px;overflow:visible}
 @keyframes pillSpring{
   0%{transform:scale(0) translateY(12px);opacity:0}
   60%{opacity:1}
@@ -882,9 +853,17 @@ function defaultState(){
 /* Active plan accessor — ALL workout data goes through this */
 function AP(){return S.plans.find(p=>p.id===S.activePlanId)||S.plans[0];}
 
+/* Make a plan safe to render, whatever produced it (old versions, an import, the cloud):
+   lists are lists and every history entry has a date and a sets array. "The latest session" is the last entry. */
 function normalizePlan(p){
-  if(!p.days)p.days=[];if(!p.cats)p.cats=[];if(!p.exs)p.exs=[];
-  p.exs.forEach(ex=>{if(!ex.history)ex.history=[];});
+  const list=v=>Array.isArray(v)?v.filter(x=>x&&typeof x==='object'):[];
+  p.days=list(p.days);p.cats=list(p.cats);p.exs=list(p.exs);
+  p.exs.forEach(ex=>{
+    ex.w=cleanW(ex.w);
+    ex.history=list(ex.history)
+      .filter(h=>Array.isArray(h.sets)&&!isNaN(new Date(h.date)))
+      .map(h=>typeof h.date==='string'?h:{...h,date:new Date(h.date).toISOString()});
+  });
   if(!p.activeDay||!p.days.find(d=>d.id===p.activeDay))p.activeDay=p.days[0]?.id||'';
 }
 
@@ -894,8 +873,9 @@ function normalizePlan(p){
 const SK='qorvexa_v1';
 let S={};
 function loadLocal(){
+  let raw=null;
   try{
-    const raw=localStorage.getItem('qorvexa_v1')||localStorage.getItem('trackr_v5')
+    raw=localStorage.getItem(SK)||localStorage.getItem('trackr_v5')
       ||localStorage.getItem('trackr_v4')
       ||localStorage.getItem('trackr_v3')
       ||localStorage.getItem('trackr_v1');
@@ -930,64 +910,66 @@ function loadLocal(){
     if(!S.activePlanId||!S.plans.find(p=>p.id===S.activePlanId))
       S.activePlanId=S.plans[0].id;
     S.plans.forEach(normalizePlan);
-  }catch(e){S=defaultState();}
+  }catch(e){
+    if(raw){try{localStorage.setItem(SK+'_unreadable',raw);}catch(_){}}   // keep what could not be read instead of silently overwriting it
+    S=defaultState();
+  }
 }
 function saveLocal(){try{S.updatedAt=S.updatedAt||new Date().toISOString();localStorage.setItem(SK,JSON.stringify(S));}catch(e){}}
-function save(){S.updatedAt=new Date().toISOString();saveLocal();supaSave(S);}
+function save(){
+  S.updatedAt=new Date().toISOString();
+  syncMeta.dirty=true;saveMeta();          // flag first: if the app dies between the two writes it re-uploads instead of forgetting
+  saveLocal();schedulePush();
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    UNITS
 ═══════════════════════════════════════════════════════════════════════ */
+const LB_PER_KG=2.20462;
 function fmtW(kg){
   const n=parseFloat(kg)||0;
-  if(S.unit==='lbs'){const v=Math.round(n*2.20462*10)/10;return v+' lbs';}
+  if(S.unit==='lbs')return Math.round(n*LB_PER_KG*10)/10+' lbs';
   const r=Math.round(n*100)/100;
   return(r%1===0?r:r.toFixed(2))+' kg';
 }
-// Canonical weight: always stored in kg, rounded to nearest 0.25kg or 0.1lb
+/* Weights are always STORED in kg. Input is snapped to a grid that depends on the unit
+   (0.25 kg, or 0.5 lb kept as kg to 3 decimals) so display units never leak into storage. */
 function normalizeKg(kg){
-  const n=parseFloat(kg)||0;
-  if(n<0)return 0;
-  if(S.unit==='lbs'){
-    // Round to nearest 0.5lb (≈0.227kg), stored as kg
-    const lbs=Math.round(n*2.20462*2)/2;
-    return Math.round(lbs/2.20462*1000)/1000;
-  }
-  return Math.round(n*4)/4; // nearest 0.25kg
+  const n=parseFloat(kg);
+  if(!(n>0))return 0;
+  if(S.unit==='lbs')return Math.round(Math.round(n*LB_PER_KG*2)/2/LB_PER_KG*1000)/1000;
+  return Math.round(n*4)/4;
 }
-function toKg(val){
-  const n=parseFloat(val)||0;
-  if(n<0)return 0;
-  return S.unit==='lbs'?normalizeKg(n/2.20462):normalizeKg(n);
+function toKg(v){                       // number typed in the current unit → kg
+  const n=parseFloat(v);
+  if(!(n>0))return 0;
+  return normalizeKg(S.unit==='lbs'?n/LB_PER_KG:n);
 }
-function fromKg(kg){
+function fromKg(kg){                    // kg → number in the current unit
   const n=parseFloat(kg)||0;
-  return S.unit==='lbs'?Math.round(n*2.20462*10)/10:Math.round(n*100)/100;
+  return S.unit==='lbs'?Math.round(n*LB_PER_KG*10)/10:Math.round(n*100)/100;
 }
 function smStep(){return S.unit==='lbs'?1:0.25;}
 function bigStep(){return S.unit==='lbs'?5:2.5;}
-// Safe weight step — always goes through normalizeKg
-function stepWeight(kgVal,delta){
-  return normalizeKg(fromKg(kgVal)+delta);
-}
+/* Move a kg weight by `delta`, which is expressed in the CURRENT unit. */
+function stepWeight(kg,delta){return toKg(fromKg(normalizeKg(kg))+delta);}
 
 /* ═══════════════════════════════════════════════════════════════════════
    PROGRESS LOGIC
 ═══════════════════════════════════════════════════════════════════════ */
-// Normalise a set value — old format is a plain number, new is {w,r}
+const clampReps=r=>Math.max(1,Math.min(30,parseInt(r,10)||1));
+const cleanW=(v,fb=0)=>{const n=parseFloat(v);return Number.isFinite(n)&&n>=0?Math.round(n*1000)/1000:fb;};
+// One logged set. Old data stored a bare rep count; current data is {w,r}.
+// A weight of 0 (or a missing one) means "same as the session weight", so a damaged value never reads as 0.
 function normSet(s,fallbackW){
-  const fw=normalizeKg(fallbackW)||0;
-  if(typeof s==='object'&&s!==null){
-    const w=normalizeKg(s.w??fw)||fw;
-    const r=Math.max(1,Math.min(30,parseInt(s.r)||1));
-    return{w,r};
-  }
-  return{w:fw,r:Math.max(1,Math.min(30,parseInt(s)||1))};
+  const fw=cleanW(fallbackW);
+  if(s!==null&&typeof s==='object')return{w:cleanW(s.w,fw)||fw,r:clampReps(s.r)};
+  return{w:fw,r:clampReps(s)};
 }
 function sessionMaxW(h){
-  if(!h.sets?.length)return normalizeKg(h.w)||0;
-  const vals=h.sets.map(s=>normSet(s,h.w).w).filter(w=>w>0&&isFinite(w));
-  return vals.length?Math.max(...vals):normalizeKg(h.w)||0;
+  const fw=cleanW(h.w);
+  if(!h.sets?.length)return fw;
+  return h.sets.reduce((m,s)=>Math.max(m,normSet(s,fw).w),0)||fw;
 }
 function isReady(ex){
   if(!ex.history?.length)return false;
@@ -997,16 +979,12 @@ function isReady(ex){
   return last.sets.every(s=>normSet(s,last.w).r>=S.repMax);
 }
 function lastLabel(ex){
-  if(!ex.history?.length)return null;
-  // Skip today's entry — show the most recent previous day session
-  const prev=ex.history.filter(h=>!isToday(h.date));
-  if(!prev.length)return null;
-  const last=prev[prev.length-1];
+  const last=ex.history?.at(-1);
+  if(!last)return null;
   const d=new Date(last.date),t=new Date(),y=new Date(t);y.setDate(t.getDate()-1);
   const ds=d.toDateString()===t.toDateString()?'Today':d.toDateString()===y.toDateString()?'Yesterday':d.toLocaleDateString('en',{month:'short',day:'numeric'});
-  const topW=sessionMaxW(last);
   const reps=last.sets.map(s=>normSet(s,last.w).r).join(', ');
-  return`${ds} · ${fmtW(topW)} · ${reps} reps`;
+  return`${ds} · ${fmtW(sessionMaxW(last))} · ${reps} reps`;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -1067,55 +1045,175 @@ function applyAll(){
 /* ═══════════════════════════════════════════════════════════════════════
    SUPABASE
 ═══════════════════════════════════════════════════════════════════════ */
-const CFGK='qorvexaSupa_v1';
-let supaUrl='',supaKey='';
-function loadCfg(){try{const c=JSON.parse(localStorage.getItem(CFGK)||'{}');supaUrl=c.url||'';supaKey=c.key||'';}catch(e){}}
-function saveCfg(u,k){supaUrl=u.trim();supaKey=k.trim();try{localStorage.setItem(CFGK,JSON.stringify({url:supaUrl,key:supaKey}));}catch(e){}}
+/* Rule one of sync: a stale device must never overwrite newer cloud data.
+   • S.updatedAt changes only when the user changes something (see save()).
+   • syncMeta.base  = the version of the cloud row this device last pulled or pushed.
+     syncMeta.dirty = this device holds changes the cloud has not received yet.
+   • Before uploading, the cloud version is compared with `base`. If another device wrote in the
+     meantime the two copies are MERGED (session histories are unioned) instead of one replacing the other. */
+const CFGK='qorvexaSupa_v1',SYNCK='qorvexaSync_v1';
+let supaUrl='',supaKey='',syncMeta={base:null,dirty:false};
+function loadCfg(){
+  try{const c=JSON.parse(localStorage.getItem(CFGK)||'{}');supaUrl=c.url||'';supaKey=c.key||'';}catch(e){}
+  try{const m=JSON.parse(localStorage.getItem(SYNCK)||'{}');syncMeta={base:m.base||null,dirty:!!m.dirty};}catch(e){}
+}
+function saveMeta(){try{localStorage.setItem(SYNCK,JSON.stringify(syncMeta));}catch(e){}}
+function saveCfg(u,k){
+  supaUrl=u.trim();supaKey=k.trim();
+  syncMeta={base:null,dirty:false};saveMeta();            // another project is another history
+  try{localStorage.setItem(CFGK,JSON.stringify({url:supaUrl,key:supaKey}));}catch(e){}
+}
 function hasSupa(){return!!(supaUrl&&supaKey)}
 function setSyncDot(s){const d=$('syncDot');d.className='sync-dot';if(s)d.classList.add('show',s);}
-async function supaFetch(method,body){
+
+async function supaFetch(method,body,cols){
   if(!hasSupa())return null;
+  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),20000);    // a hung request must never block sync
   try{
-    const r=await fetch(supaUrl.replace(/\/$/,'')+'/rest/v1/gym_data?id=eq.1',{
-      method,headers:{'Content-Type':'application/json','apikey':supaKey,'Authorization':'Bearer '+supaKey,'Prefer':method==='GET'?'return=representation':'return=minimal'},
+    const r=await fetch(supaUrl.replace(/\/$/,'')+'/rest/v1/gym_data?id=eq.1'+(cols?'&select='+cols:''),{
+      method,signal:ctl.signal,
+      headers:{'Content-Type':'application/json','apikey':supaKey,'Authorization':'Bearer '+supaKey,'Prefer':method==='GET'?'return=representation':'return=minimal'},
       body:body?JSON.stringify(body):undefined
     });
     if(!r.ok)throw new Error('HTTP '+r.status);
     return method==='GET'?await r.json():true;
   }catch(e){return null;}
+  finally{clearTimeout(t);}
 }
-async function supaLoad(){
+
+const hasLocalData=()=>S.plans.some(p=>p.exs.length||p.days.length);
+const hasHistory=st=>st.plans.some(p=>p.exs.some(e=>e.history.length));
+const tsOf=v=>Date.parse(v)||0;
+
+/* Cloud blob → a complete, sanitised state (or null). Missing settings fall back to this device's. */
+function cloudToState(cloud){
+  if(!cloud||typeof cloud!=='object')return null;
+  if(!cloud.plans&&(cloud.days||cloud.exs)){                 // very old flat format
+    const pid=uid();
+    cloud.plans=[{id:pid,name:'My Plan',activeDay:cloud.activeDay||cloud.days?.[0]?.id||'',
+      days:cloud.days||[],cats:cloud.cats||[],exs:cloud.exs||[]}];
+    cloud.activePlanId=pid;
+    delete cloud.days;delete cloud.cats;delete cloud.exs;delete cloud.activeDay;
+  }
+  if(!Array.isArray(cloud.plans)||!cloud.plans.length)return null;
+  cloud.plans=cloud.plans.filter(p=>p&&typeof p==='object');
+  if(!cloud.plans.length)return null;
+  cloud.theme=cloud.theme||S.theme;
+  cloud.themeMode=cloud.themeMode||S.themeMode||'dark';
+  cloud.scheduleLight=cloud.scheduleLight||S.scheduleLight||'06:00';
+  cloud.scheduleDark=cloud.scheduleDark||S.scheduleDark||'22:00';
+  cloud.accentPreset=cloud.accentPreset||S.accentPreset||'indigo';
+  cloud.labelDark=cloud.labelDark||S.labelDark||LD[0];
+  cloud.labelLight=cloud.labelLight||S.labelLight||LL[0];
+  cloud.bgPreset=cloud.bgPreset||S.bgPreset||'default';
+  cloud.unit=cloud.unit||S.unit||'kg';
+  cloud.features={...S.features,...(cloud.features||{})};
+  if(cloud.repMin==null)cloud.repMin=S.repMin??8;
+  if(cloud.repMax==null)cloud.repMax=S.repMax??12;
+  if(cloud.restMins==null)cloud.restMins=S.restMins??1;
+  if(cloud.restSecs==null)cloud.restSecs=S.restSecs??30;
+  cloud.plans.forEach(normalizePlan);
+  if(!cloud.activePlanId||!cloud.plans.find(p=>p.id===cloud.activePlanId))cloud.activePlanId=cloud.plans[0].id;
+  return cloud;
+}
+
+/* Two copies that both changed: keep the newer document's plans and settings, but union the session
+   histories of exercises they share. A session has one timestamp, so the same timestamp is the same session. */
+function mergeStates(a,b){
+  const newer=tsOf(a.updatedAt)>=tsOf(b.updatedAt)?a:b,older=newer===a?b:a;
+  const m=JSON.parse(JSON.stringify(newer));
+  m.plans.forEach(pl=>{
+    const op=older.plans.find(x=>x.id===pl.id);if(!op)return;
+    pl.exs.forEach(ex=>{
+      const oe=op.exs.find(x=>x.id===ex.id);if(!oe)return;
+      const bySession=new Map();
+      [...oe.history,...ex.history].forEach(h=>bySession.set(h.date,h));
+      ex.history=[...bySession.values()].sort((x,y)=>new Date(x.date)-new Date(y.date)).slice(-50);
+      const last=ex.history.at(-1);
+      if(last)ex.w=sessionMaxW(last);
+    });
+  });
+  m.updatedAt=new Date().toISOString();
+  return m;
+}
+
+/* Take a state from the cloud (or a merge) as ours. Returns true when anything actually changed. */
+function adopt(state,version,dirty){
+  const changed=JSON.stringify(state)!==JSON.stringify(S);
+  if(changed){S=state;saveLocal();applyAll();render();}
+  syncMeta.base=version||null;syncMeta.dirty=dirty;saveMeta();
+  return changed;
+}
+/* Upload S. Afterwards remember the version the cloud assigned, so our own write never looks like someone else's. */
+async function put(){
+  const stamp=S.updatedAt||(S.updatedAt=new Date().toISOString());
+  if(!await supaFetch('PATCH',{data:S,updated_at:stamp}))return false;
+  const v=await supaFetch('GET',null,'updated_at');
+  if(!v||!v[0])return false;                                  // no id=1 row: the write went nowhere
+  syncMeta.base=v[0].updated_at;
+  if(S.updatedAt===stamp)syncMeta.dirty=false;               // unless the user changed something meanwhile
+  saveMeta();return true;
+}
+/* One reconcile pass. → 'same' | 'pushed' | 'pulled' | 'restored' | 'merged' | 'error' */
+async function syncOnce(){
+  const ver=await supaFetch('GET',null,'updated_at');        // tiny request: which version is in the cloud?
+  if(!ver)return'error';
+  if(syncMeta.base&&ver[0]?.updated_at===syncMeta.base){      // untouched since we last synced
+    if(!syncMeta.dirty)return'same';
+    return await put()?'pushed':'error';
+  }
+  const rows=await supaFetch('GET');                          // moved, or first contact: fetch the content
+  if(!rows||!rows[0])return'error';
+  const row=rows[0],had=hasLocalData();
+  const cloud=cloudToState(row.data);
+  if(!cloud)return had?(await put()?'pushed':'error'):'same'; // cloud is empty
+  const L=tsOf(S.updatedAt),C=tsOf(cloud.updatedAt||row.updated_at);
+  const mine=syncMeta.base?syncMeta.dirty:(L>C&&hasHistory(S));   // local changes the cloud has not seen
+  if(!had||!mine)return adopt(cloud,row.updated_at,false)?(had?'pulled':'restored'):'same';
+  adopt(mergeStates(S,cloud),row.updated_at,true);
+  return await put()?'merged':'error';
+}
+let syncBusy=false,syncAgain=false,syncT=null,lastSync=0;
+async function syncNow(o){
+  clearTimeout(syncT);
   if(!hasSupa()||!navigator.onLine)return null;
-  setSyncDot('syncing');
-  const rows=await supaFetch('GET');
-  if(!rows?.length||!rows[0].data){setSyncDot('');return null;}
-  const d=rows[0].data;
-  if(!d.plans&&!d.exs){setSyncDot('');return null;}
-  setSyncDot('synced');
-  return{data:d,updatedAt:rows[0].updated_at||null};
+  if(syncBusy){syncAgain=true;return null;}
+  syncBusy=true;setSyncDot('syncing');
+  let out='error';
+  try{out=await syncOnce();}catch(e){}
+  syncBusy=false;lastSync=Date.now();
+  setSyncDot(out==='error'?'error':'synced');
+  if(out==='error'&&!(o&&o.quiet))showToast('⚠ Sync failed — saved locally');
+  if(syncAgain){syncAgain=false;syncNow(o);}
+  return out;
 }
-let syncT;
-async function supaSave(state){
+function schedulePush(){
   if(!hasSupa()){setSyncDot('');return;}
-  clearTimeout(syncT);setSyncDot('syncing');
-  state.updatedAt=new Date().toISOString();
-  saveLocal();
-  syncT=setTimeout(async()=>{
-    const ok=await supaFetch('PATCH',{data:state,updated_at:state.updatedAt});
-    ok?setSyncDot('synced'):(setSyncDot('error'),showToast('⚠ Sync failed — saved locally'));
-  },1200);
+  setSyncDot('syncing');clearTimeout(syncT);syncT=setTimeout(syncNow,1200);
 }
+const SYNC_MSG={pulled:'✓ Synced from cloud',merged:'✓ Merged with cloud',restored:'✓ Restored from cloud'};
+async function backgroundSync(){
+  const out=await syncNow({quiet:true});
+  if(SYNC_MSG[out])showToast(SYNC_MSG[out]);
+}
+window.addEventListener('online',backgroundSync);
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden'){
+    if(S.updatedAt)saveLocal();                               // make sure the latest state is on disk…
+    if(syncMeta.dirty)syncNow({quiet:true});                 // …and on its way to the cloud
+  }else if(Date.now()-lastSync>15000)backgroundSync();       // back in front: pick up other devices' changes
+});
+window.addEventListener('pagehide',()=>{if(S.updatedAt)saveLocal();});
+
 async function testSupa(url,key){
   try{
-    const r=await fetch(url.replace(/\/$/,'')+'/rest/v1/gym_data?id=eq.1',{
+    const r=await fetch(url.replace(/\/$/,'')+'/rest/v1/gym_data?id=eq.1&select=id',{
       headers:{'apikey':key,'Authorization':'Bearer '+key}
     });
     if(!r.ok)throw new Error('HTTP '+r.status);
     const rows=await r.json();
-    if(!rows.length)return'empty';
-    const d=rows[0].data;
-    // 'hasdata' = cloud has real workout plans, 'empty' = row exists but no plans
-    return(d&&(d.plans?.length||d.exs))?'hasdata':'empty';
+    if(!rows.length)throw new Error('row id=1 is missing — run the setup SQL below');
+    return'ok';
   }catch(e){return'err:'+e.message;}
 }
 
@@ -1135,7 +1233,7 @@ $('spBack').addEventListener('click',()=>$('sp').classList.remove('open'));
 /* ═══════════════════════════════════════════════════════════════════════
    TIMER  (RAF never doubles — fully decoupled from render)
 ═══════════════════════════════════════════════════════════════════════ */
-const T={running:false,base:0,startAt:0,laps:[],lastLapBase:0,rafId:null};
+const T={running:false,base:0,startAt:0,rafId:null};
 let wakeLock=null;
 
 function tNow(){return T.running?T.base+(performance.now()-T.startAt):T.base;}
@@ -1156,38 +1254,23 @@ function tStart(){
   T.startAt=performance.now();T.running=true;
   cancelAnimationFrame(T.rafId);T.rafId=requestAnimationFrame(tTick);
   haptic([40]);reqWake();updateTimerBtns();updateTimerPill();
-  hgStart();
 }
 function tPause(){
   if(!T.running)return;
   T.base+=performance.now()-T.startAt;T.running=false;
   cancelAnimationFrame(T.rafId);relWake();updateTimerBtns();updateTimerPill();
-  hgStop();
 }
 function tReset(){
-  T.running=false;T.base=0;T.startAt=0;T.laps=[];T.lastLapBase=0;
+  T.running=false;T.base=0;T.startAt=0;
   cancelAnimationFrame(T.rafId);relWake();
   const d=$('timerDisp'),c=$('timerCenti');
   if(d)d.textContent='00:00'; if(c)c.textContent='.00';
-  updateTimerBtns();updateTimerPill();renderLaps();
-  hgReset();
-}
-function tLap(){
-  if(!T.running)return;
-  const cur=tNow();T.laps.unshift({total:cur,split:cur-T.lastLapBase});T.lastLapBase=cur;
-  renderLaps();
+  updateTimerBtns();updateTimerPill();
 }
 function updateTimerBtns(){
-  const play=$('timerPlay'),lap=$('timerLap');
+  const play=$('timerPlay'),reset=$('timerReset');
   if(play)play.innerHTML=mi(T.running?'pause':'play_arrow');
-  if(lap){lap.innerHTML=mi('replay');lap.disabled=T.running||T.base===0;}
-}
-function renderLaps(){
-  const w=$('timerLapsWrap');if(!w)return;
-  if(!T.laps.length){w.innerHTML='';return;}
-  let h='';
-  T.laps.forEach((l,i)=>{h+=`<div class="lap-row"><div class="lap-num">Lap ${T.laps.length-i}</div><div class="lap-time">${tFmt(l.total)}${tCentis(l.total)}</div><div class="lap-split">+${tFmt(l.split)}${tCentis(l.split)}</div></div>`;});
-  w.innerHTML=h;
+  if(reset){reset.innerHTML=mi('replay');reset.disabled=T.running||T.base===0;}
 }
 async function reqWake(){
   if(!('wakeLock'in navigator))return;
@@ -1211,13 +1294,12 @@ function renderTimerScreen(container){
       <div id="timerCenti" class="timer-centi">${tCentis(elapsed)}</div>
       <div class="timer-status" id="timerStatus">${T.running?'Running…':T.base>0?'Paused':''}</div>
       <div class="timer-btns">
-        <button class="t-sec" id="timerLap" ${T.running||T.base===0?'disabled':''}>${mi('replay')}</button>
+        <button class="t-sec" id="timerReset" ${T.running||T.base===0?'disabled':''}>${mi('replay')}</button>
         <button class="t-pri" id="timerPlay">${mi(T.running?'pause':'play_arrow')}</button>
       </div>
       <div id="wakeBadge" class="wake-badge ${wakeLock?'active':''}">
         ${mi('screen_lock_portrait')}<span>${wakeLock?'Screen stays on':'Screen may sleep'}</span>
       </div>
-      <div id="timerLapsWrap" class="laps-wrap" style="display:${T.laps.length?'block':'none'}"></div>
       ${feat('restTimer')?`<div class="rest-section" id="restSection">
         <div class="rest-hdr">Auto-Rest After Session</div>
         <div class="rest-ctrl">
@@ -1244,9 +1326,8 @@ function renderTimerScreen(container){
   $('timerPlay').addEventListener('click',()=>{
     T.running?tPause():tStart();
     const s=$('timerStatus');if(s)s.textContent=T.running?'Running…':T.base>0?'Paused':'';
-    const lw=$('timerLapsWrap');if(lw)lw.style.display=T.laps.length?'block':'none';
   });
-  $('timerLap').addEventListener('click',()=>{tReset();});
+  $('timerReset').addEventListener('click',tReset);
 
   if(feat('restTimer')){
     $('restMinDown').addEventListener('click',()=>{S.restMins=Math.max(0,S.restMins-1);$('restMinVal').textContent=S.restMins;save();haptic([28]);});
@@ -1281,10 +1362,8 @@ $('wInputField').addEventListener('keydown',e=>{if(e.key==='Enter')closeWeightIn
    HAPTIC
 ═══════════════════════════════════════════════════════════════════════ */
 function haptic(p=[30]){
-  if(S.features?.haptic===false)return;
   try{navigator.vibrate&&navigator.vibrate(p);}catch(e){}
 }
-function feat(k){return S.features?.[k]!==false;}
 function feat(k){return S.features?.[k]!==false;}
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -1442,228 +1521,113 @@ function est1RM(ex){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   HOURGLASS ANIMATION ENGINE
-═══════════════════════════════════════════════════════════════════════ */
-const HG={cx:12,topY:4.5,botY:19.5,waistT:11.6,waistB:12.4,hw:6.2};
-const hgState={level:1,dir:-1,flip:false,flipProg:0,flipAngle:0,pause:0,rafId:null,
-  drops:[{y:0,speed:.7},{y:.38,speed:.85},{y:.7,speed:.65}]};
-
-function hgTopPath(l){
-  if(l<.002)return`M${HG.cx},${HG.waistT}Z`;
-  const y=(HG.waistT-l*(HG.waistT-HG.topY)).toFixed(2);
-  const w=HG.hw*l;
-  const lx=(HG.cx-w).toFixed(2),rx=(HG.cx+w).toFixed(2);
-  const cx=HG.cx,wt=HG.waistT;
-  // Left side: cubic from corner to apex, CP1 pulled fully to center-x at surface y → strong inward curve
-  // Right: mirror. Top surface: straight line.
-  return`M${lx},${y} C${cx},${y} ${cx},${wt} ${cx},${wt} C${cx},${wt} ${cx},${y} ${rx},${y} L${lx},${y}Z`;
-}
-function hgBotPath(l){
-  if(l<.002)return`M${HG.cx},${HG.waistB}Z`;
-  const y=(HG.waistB+l*(HG.botY-HG.waistB)).toFixed(2);
-  const w=HG.hw*l;
-  const lx=(HG.cx-w).toFixed(2),rx=(HG.cx+w).toFixed(2);
-  const cx=HG.cx,wb=HG.waistB;
-  // From apex: left side curves outward to left corner, straight bottom, right side mirrors
-  return`M${cx},${wb} C${lx},${wb} ${lx},${y} ${lx},${y} L${rx},${y} C${rx},${y} ${rx},${wb} ${cx},${wb}Z`;
-}
-function hgEase(t){return t<.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1;}
-
-function hgDraw(){
-  const p=$('timerPill');
-  if(!p||p.dataset.icon!=='hourglass_empty')return;
-  const g=p.querySelector('.hg-grp');
-  const topEl=p.querySelector('.hg-top');
-  const botEl=p.querySelector('.hg-bot');
-  if(!g||!topEl||!botEl)return;
-
-  // Rotation
-  let ang=hgState.flipAngle+(hgState.flip?hgEase(hgState.flipProg)*180:0);
-  g.style.transform=`rotate(${ang.toFixed(2)}deg)`;
-
-  // Sand — top polygon uses level, bot uses (1-level).
-  // After 180° flip the SVG rotates so the elements visually swap,
-  // so the same math keeps working — we just reverse drain direction.
-  const lv=hgState.level;
-  topEl.setAttribute('d',hgTopPath(lv));
-  topEl.style.opacity=lv>.002?'1':'0';
-  botEl.setAttribute('d',hgBotPath(1-lv));
-  botEl.style.opacity=(1-lv)>.002?'1':'0';
-
-  // Falling drops through the neck
-  // dir<0 means top draining (lv 1→0): show drops when lv>.05
-  // dir>0 means bot draining (lv 0→1): at 180° the bot polygon is visual-top, so show drops when lv<.95
-  const draining=!hgState.flip&&hgState.pause===0;
-  const hasFlow=draining&&(hgState.dir<0?lv>.05:lv<.95);
-  const gapH=HG.waistB-HG.waistT;
-  for(let i=0;i<3;i++){
-    const d=p.querySelector(`.hg-d${i}`);
-    if(!d)continue;
-    if(hasFlow){
-      d.style.opacity=String(.5+i*.12);
-      d.style.transform=`translateY(${(hgState.drops[i].y*gapH).toFixed(2)}px)`;
-    }else{d.style.opacity='0';}
-  }
-}
-
-function hgTick(){
-  if(!T.running){hgState.rafId=null;hgDraw();return;}
-  const FPS=60;
-
-  if(hgState.flip){
-    hgState.flipProg+=1/(FPS*.38);
-    if(hgState.flipProg>=1){
-      hgState.flip=false;hgState.flipProg=0;
-      hgState.flipAngle=(hgState.flipAngle+180)%360;
-      // Reverse drain direction; set level to the correct start for new direction
-      hgState.dir*=-1;
-      hgState.level=hgState.dir<0?1:0;
-      hgState.drops.forEach((d,i)=>{d.y=i/3;});
-    }
-  } else if(hgState.pause>0){
-    hgState.pause--;
-    if(hgState.pause===0){hgState.flip=true;hgState.flipProg=0;}
-  } else {
-    hgState.level+=hgState.dir/(FPS*2.2);
-    hgState.drops.forEach(d=>{d.y+=d.speed/FPS;if(d.y>1)d.y=0;});
-    // Done draining when level crosses the boundary for this direction
-    if(hgState.dir<0&&hgState.level<=0){
-      hgState.level=0;hgState.pause=Math.round(FPS*.18);
-    } else if(hgState.dir>0&&hgState.level>=1){
-      hgState.level=1;hgState.pause=Math.round(FPS*.18);
-    }
-  }
-
-  hgDraw();
-  hgState.rafId=requestAnimationFrame(hgTick);
-}
-
-function hgStart(){if(!hgState.rafId)hgState.rafId=requestAnimationFrame(hgTick);}
-function hgStop(){
-  if(hgState.rafId){cancelAnimationFrame(hgState.rafId);hgState.rafId=null;}
-  hgDraw();
-}
-function hgReset(){
-  hgStop();
-  Object.assign(hgState,{level:1,dir:-1,flip:false,flipProg:0,flipAngle:0,pause:0});
-  hgState.drops.forEach((d,i)=>{d.y=i/3;});
-  hgDraw();
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
    SESSION SHEET
 ═══════════════════════════════════════════════════════════════════════ */
-let sessExId=null,sessWeight=0,sessSets=[],sessEditMode=false;
-// sessSets is now [{w, r}, ...]
+/* The session draft: ONE state shared by the portrait sheet and the landscape panel, so the
+   weight in the header can never differ from the rows that get saved, and rotating the phone
+   keeps whatever has been entered. */
+const sess={exId:null,weight:0,sets:[],edit:false};      // sets: [{w (kg), r}]
+const exById=id=>AP().exs.find(e=>e.id===id)||null;
+const sheetOpen=()=>$('sessOverlay').classList.contains('open');
+function isToday(dateStr){return new Date(dateStr).toDateString()===new Date().toDateString();}
 
-function isToday(dateStr){
-  const d=new Date(dateStr),t=new Date();
-  return d.toDateString()===t.toDateString();
+/* Seed from the most recent session — today's included — so logging twice in a day
+   (or in the other orientation) can never fall back to an older weight. */
+function seedDraft(ex,edit=false){
+  const last=ex.history?.at(-1)||null;
+  const top=(last?sessionMaxW(last):0)||cleanW(ex.w);
+  sess.exId=ex.id;sess.edit=edit;
+  sess.sets=last?.sets?.length?last.sets.map(s=>normSet(s,top)):[0,1,2].map(()=>({w:top,r:S.repMin}));
+  sess.weight=sess.sets.reduce((m,s)=>Math.max(m,s.w),0);
 }
-
-function openSession(exId){
-  const ex=AP().exs.find(e=>e.id===exId);if(!ex)return;
-  sessExId=exId;sessEditMode=false;
-  const safeW=w=>{const n=normalizeKg(w);return(n>0&&isFinite(n))?n:0;};
-  // Always seed weight from the most recent session (today or not) — prevents weight going lower
-  const allLast=ex.history?.at(-1)||null;
-  sessWeight=safeW(allLast?sessionMaxW(allLast):ex.w)||safeW(ex.w)||0;
-  if(allLast?.sets?.length){
-    sessSets=allLast.sets.map(s=>{const ns=normSet(s,allLast.w);return{w:safeW(ns.w)||sessWeight,r:Math.max(1,Math.min(30,ns.r))};});
-  }else{
-    sessSets=[{w:sessWeight,r:S.repMin},{w:sessWeight,r:S.repMin},{w:sessWeight,r:S.repMin}];
+/* Change the default weight: sets that were following it come along, edited sets stay put. */
+function setDraftWeight(kg){
+  const old=sess.weight,w=normalizeKg(kg);
+  sess.sets.forEach(s=>{if(Math.abs(s.w-old)<0.001)s.w=w;});
+  sess.weight=w;
+}
+/* Write the draft to history. Returns the saved sets, or null when there is nothing to save. */
+function commitDraft(ex){
+  const sets=sess.sets.filter(s=>s.r>0).map(s=>({w:cleanW(s.w),r:clampReps(s.r)}));
+  if(!sets.length)return null;
+  const top=sets.reduce((m,s)=>Math.max(m,s.w),0),last=ex.history.at(-1);
+  ex.w=top;
+  if(sess.edit&&last&&isToday(last.date))ex.history[ex.history.length-1]={...last,w:top,sets};
+  else{
+    ex.history.push({date:new Date().toISOString(),w:top,sets});
+    if(ex.history.length>50)ex.history=ex.history.slice(-50);
   }
+  save();
+  return sets;
+}
+
+function renderSessionSheet(){
+  const ex=exById(sess.exId);if(!ex)return false;
+  const last=ex.history?.at(-1)||null;
   $('ssTitle').textContent=ex.name;
-  $('ssSub').textContent=lastLabel(ex)||'No previous sessions';
-  $('ssProg').classList.toggle('show',isReady(ex));
+  $('ssSub').textContent=sess.edit?'Editing today\'s session':(lastLabel(ex)||'No previous sessions');
   $('ssProgTxt').textContent=`All sets hit ${S.repMax} — ready to go up!`;
-  $('ssSave').innerHTML=`<span class="mi">check</span> Save Session`;
-  updateSessWeight();
-  if(allLast?.sets?.length){
+  $('ssSave').innerHTML=sess.edit?`<span class="mi">edit</span> Save Changes`:`<span class="mi">check</span> Save Session`;
+  if(!sess.edit&&last?.sets?.length){
     $('ssGhost').classList.remove('hidden');
-    $('ssGhostSets').innerHTML=allLast.sets.map(s=>{
-      const ns=normSet(s,allLast.w);
-      return`<div class="ghost-chip${ns.r>=S.repMax?' hit':''}"><span>${ns.r}r</span><span class="ghost-chip-w">${fmtW(ns.w)}</span></div>`;
+    $('ssGhostSets').innerHTML=last.sets.map(s=>{
+      const n=normSet(s,last.w);
+      return`<div class="ghost-chip${n.r>=S.repMax?' hit':''}"><span>${n.r}r</span><span class="ghost-chip-w">${fmtW(n.w)}</span></div>`;
     }).join('');
-  }else{$('ssGhost').classList.add('hidden');}
-  renderSessSets();updateSessProg();
-  $('sessOverlay').classList.add('open');
-  setTimeout(()=>$('ssSets').scrollTop=0,50);
+  }else $('ssGhost').classList.add('hidden');
+  updateSessWeight();renderSessSets();updateSessProg();
+  return true;
 }
-
+function showSessionSheet(){
+  if(!renderSessionSheet())return;
+  $('sessOverlay').classList.add('open');
+  setTimeout(()=>{$('ssSets').scrollTop=0;},50);
+}
+function hideSessionSheet(){$('sessOverlay').classList.remove('open');}
+function openSession(exId){const ex=exById(exId);if(!ex)return;seedDraft(ex);showSessionSheet();}
 function openEditSession(exId){
-  const ex=AP().exs.find(e=>e.id===exId);if(!ex)return;
-  const last=ex.history?.length?ex.history[ex.history.length-1]:null;
+  const ex=exById(exId);if(!ex)return;
+  const last=ex.history?.at(-1);
   if(!last||!isToday(last.date)){showToast('Can only edit today\'s session');return;}
-  sessExId=exId;sessEditMode=true;
-  const safeW=w=>{const n=normalizeKg(w);return(n>0&&isFinite(n))?n:0;};
-  sessSets=last.sets.map(s=>{const ns=normSet(s,last.w);return{w:safeW(ns.w)||safeW(last.w)||0,r:Math.max(1,Math.min(30,ns.r))};});
-  sessWeight=safeW(sessionMaxW(last))||safeW(last.w)||0;
-  $('ssTitle').textContent=ex.name;
-  $('ssSub').textContent='Editing today\'s session';
-  $('ssProg').classList.remove('show');
-  $('ssGhost').classList.add('hidden');
-  $('ssSave').innerHTML=`<span class="mi">edit</span> Save Changes`;
-  updateSessWeight();renderSessSets();
-  $('sessOverlay').classList.add('open');
-  setTimeout(()=>$('ssSets').scrollTop=0,50);
+  seedDraft(ex,true);showSessionSheet();
 }
 
-function updateSessWeight(){
-  $('ssWval').textContent=fmtW(sessWeight);
-}
-function applyDefaultWeight(newW,oldW){
-  const nw=normalizeKg(newW);
-  sessSets.forEach(s=>{if(Math.abs(s.w-oldW)<0.001)s.w=nw;});
-  sessWeight=nw;
-  updateSessWeight();
-  renderSessSets();
-}
-$('wBigDown').addEventListener('click',()=>{const o=sessWeight,n=stepWeight(o,-bigStep());applyDefaultWeight(n,o);});
-$('wSmDown').addEventListener('click',()=>{const o=sessWeight,n=stepWeight(o,-smStep());applyDefaultWeight(n,o);});
-$('wSmUp').addEventListener('click',()=>{const o=sessWeight,n=stepWeight(o,+smStep());applyDefaultWeight(n,o);});
-$('wBigUp').addEventListener('click',()=>{const o=sessWeight,n=stepWeight(o,+bigStep());applyDefaultWeight(n,o);});
-$('ssWval').addEventListener('click',()=>{
-  openWeightInput(sessWeight,val=>{applyDefaultWeight(val,sessWeight);});
-});
+function updateSessWeight(){$('ssWval').textContent=fmtW(sess.weight);}
+function changeDraftWeight(kg){setDraftWeight(kg);updateSessWeight();renderSessSets();}
+$('wBigDown').addEventListener('click',()=>changeDraftWeight(stepWeight(sess.weight,-bigStep())));
+$('wSmDown').addEventListener('click',()=>changeDraftWeight(stepWeight(sess.weight,-smStep())));
+$('wSmUp').addEventListener('click',()=>changeDraftWeight(stepWeight(sess.weight,+smStep())));
+$('wBigUp').addEventListener('click',()=>changeDraftWeight(stepWeight(sess.weight,+bigStep())));
+$('ssWval').addEventListener('click',()=>openWeightInput(sess.weight,changeDraftWeight));
 
 function renderSessSets(){
   const container=$('ssSets');
   container.querySelectorAll('.set-row').forEach(r=>r.remove());
   const addBtn=$('ssAddSet');
-  sessSets.forEach((set,i)=>{
+  sess.sets.forEach((set,i)=>{
     const row=el('div','set-row');
-    // Set number
     const num=el('div','set-num');num.textContent='Set '+(i+1);
-    // Per-set weight chip (tappable)
     const wchip=el('button','set-w');wchip.textContent=fmtW(set.w);
-    wchip.addEventListener('click',e=>{
-      e.stopPropagation();
-      openWeightInput(set.w,val=>{sessSets[i].w=normalizeKg(val);renderSessSets();});
-    });
-    // Reps control
+    wchip.addEventListener('click',e=>{e.stopPropagation();openWeightInput(set.w,v=>{set.w=v;renderSessSets();});});
     const ctrl=el('div','reps-ctrl');
     const down=el('button','rbtn');down.innerHTML=mi('remove');
     const up=el('button','rbtn');up.innerHTML=mi('add');
-    const vwrap=el('div','reps-val');
-    const vnum=el('div','reps-num');
-    const vhint=el('div','reps-hint');
+    const vwrap=el('div','reps-val'),vnum=el('div','reps-num'),vhint=el('div','reps-hint');
     setRepsState(vnum,vhint,set.r);
     vwrap.appendChild(vnum);vwrap.appendChild(vhint);
-    down.addEventListener('click',()=>{sessSets[i].r=Math.max(1,sessSets[i].r-1);setRepsState(vnum,vhint,sessSets[i].r);haptic([28]);});
-    up.addEventListener('click',()=>{sessSets[i].r=Math.min(30,sessSets[i].r+1);setRepsState(vnum,vhint,sessSets[i].r);haptic([28]);});
+    down.addEventListener('click',()=>{set.r=Math.max(1,set.r-1);setRepsState(vnum,vhint,set.r);haptic([28]);});
+    up.addEventListener('click',()=>{set.r=Math.min(30,set.r+1);setRepsState(vnum,vhint,set.r);haptic([28]);});
     ctrl.appendChild(down);ctrl.appendChild(vwrap);ctrl.appendChild(up);
     const del=el('button','set-del');del.innerHTML=mi('delete');
-    del.addEventListener('click',()=>{sessSets.splice(i,1);renderSessSets();updateSessProg();});
+    del.addEventListener('click',()=>{sess.sets=sess.sets.filter(x=>x!==set);renderSessSets();updateSessProg();});
     row.appendChild(num);row.appendChild(wchip);row.appendChild(ctrl);row.appendChild(del);
     row.style.animation='setRowIn .28s var(--spring) forwards';
     container.insertBefore(row,addBtn);
   });
 }
 function updateSessProg(){
-  const allMax=sessSets.length>0&&sessSets.every(s=>s.r>=S.repMax);
   const prog=$('ssProg');
-  if(prog)prog.classList.toggle('show',allMax);
+  if(prog)prog.classList.toggle('show',sess.sets.length>0&&sess.sets.every(s=>s.r>=S.repMax));
 }
 function setRepsState(vnum,vhint,r){
   vnum.textContent=r;
@@ -1675,34 +1639,23 @@ function setRepsState(vnum,vhint,r){
 }
 
 $('ssAddSet').addEventListener('click',()=>{
-  const last=sessSets[sessSets.length-1];
-  sessSets.push({w:last?.w??sessWeight,r:last?.r??S.repMin});
+  const last=sess.sets.at(-1);
+  sess.sets.push({w:last?.w??sess.weight,r:last?.r??S.repMin});
   renderSessSets();
   setTimeout(()=>{const s=$('ssSets');s.scrollTop=s.scrollHeight;},60);
 });
 $('ssSave').addEventListener('click',()=>{
-  const ex=AP().exs.find(e=>e.id===sessExId);if(!ex)return;
-  const valid=sessSets
-    .filter(s=>s.r>0)
-    .map(s=>({w:normalizeKg(s.w),r:Math.max(1,Math.min(30,Math.round(s.r)))}))
-    .filter(s=>isFinite(s.w));
-  if(!valid.length){$('sessOverlay').classList.remove('open');return;}
-  const maxW=valid.reduce((m,s)=>s.w>m?s.w:m,0);
-  ex.w=maxW>0?maxW:(ex.w||0);
-  if(sessEditMode&&ex.history.length){
-    ex.history[ex.history.length-1]={...ex.history[ex.history.length-1],w:ex.w,sets:valid.map(s=>({w:s.w,r:s.r}))};
-    save();render();$('sessOverlay').classList.remove('open');
-    showToast('Session updated');
-  } else {
-    ex.history.push({date:new Date().toISOString(),w:ex.w,sets:valid.map(s=>({w:s.w,r:s.r}))});
-    if(ex.history.length>50)ex.history=ex.history.slice(-50);
-    save();render();$('sessOverlay').classList.remove('open');
-    showToast(valid.every(s=>s.r>=S.repMax)?`All ${S.repMax}s! Time to increase 💪`:'Session saved');
-    haptic([35,25,35]);
-    startRest();
-  }
+  const ex=exById(sess.exId);if(!ex)return;
+  const wasEdit=sess.edit,sets=commitDraft(ex);
+  sess.exId=null;                         // the draft is spent — a double-tap can't save it twice
+  hideSessionSheet();
+  if(!sets)return;
+  render();
+  if(wasEdit){showToast('Session updated');return;}
+  showToast(sets.every(s=>s.r>=S.repMax)?`All ${S.repMax}s! Time to increase 💪`:'Session saved');
+  haptic([35,25,35]);startRest();
 });
-$('sessOverlay').addEventListener('click',e=>{if(e.target===$('sessOverlay'))$('sessOverlay').classList.remove('open');});
+$('sessOverlay').addEventListener('click',e=>{if(e.target===$('sessOverlay'))hideSessionSheet();});
 
 /* ═══════════════════════════════════════════════════════════════════════
    DRAG REORDER
@@ -1790,10 +1743,10 @@ let prevScrollY=0; // scroll position when leaving exercise screen
 
 function goToTimer(){
   if(!showTimer){
-    const sessOpen=$('sessOverlay')?.classList.contains('open');
-    prevExId=sessOpen?sessExId:null;
+    const open=sheetOpen();
+    prevExId=open?sess.exId:null;
     prevScrollY=window.scrollY||document.documentElement.scrollTop;
-    if(sessOpen)$('sessOverlay').classList.remove('open');
+    if(open)hideSessionSheet();
   }
   showTimer=true;showCharts=false;
   render(()=>window.scrollTo({top:0,behavior:'instant'}));
@@ -1802,64 +1755,19 @@ function goToTimer(){
 function goToExercises(){
   showTimer=false;showCharts=false;
   render(()=>window.scrollTo({top:prevScrollY,behavior:'instant'}));
-  if(prevExId&&$('sessOverlay')&&!$('sessOverlay').classList.contains('open')){
-    setTimeout(()=>openSession(prevExId),80);
-  }
-}
-
-function pillIcon(icon){
-  if(icon==='hourglass_empty'){
-    return`<svg class="hg-svg" viewBox="0 0 24 24" fill="none">
-      <g class="hg-grp" style="transform-origin:12px 12px">
-        <line x1="5.5" y1="4.5" x2="18.5" y2="4.5" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="5.5" y1="19.5" x2="18.5" y2="19.5" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6 4.5 C7 8.5 11 11 11.8 11.6 C12.6 11 17 8.5 18 4.5" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M6 19.5 C7 15.5 11 13 11.8 12.4 C12.6 13 17 15.5 18 19.5" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.1" stroke-linecap="round"/>
-        <path class="hg-top" fill="rgba(255,255,255,.88)"/>
-        <path class="hg-bot" fill="rgba(255,255,255,.88)" style="opacity:0"/>
-        <circle class="hg-d0" cx="12" cy="11.6" r="0.5" fill="rgba(255,255,255,.85)" style="opacity:0"/>
-        <circle class="hg-d1" cx="12" cy="11.6" r="0.4" fill="rgba(255,255,255,.72)" style="opacity:0"/>
-        <circle class="hg-d2" cx="12" cy="11.6" r="0.45" fill="rgba(255,255,255,.78)" style="opacity:0"/>
-      </g>
-    </svg>`;
-  }
-  return`<span class="mi">${icon}</span>`;
+  // Resume the SAME draft (nothing is re-seeded, so unsaved weight/reps changes survive the detour)
+  if(prevExId&&sess.exId===prevExId&&!sheetOpen())setTimeout(showSessionSheet,80);
+  prevExId=null;
 }
 
 function pillShow(icon){
   const p=$('timerPill');if(!p)return;
-  if(p.classList.contains('show')&&p.dataset.icon===icon){
-    // Already showing right icon — just ensure anim state is correct
-    if(icon==='hourglass_empty'){T.running?hgStart():hgStop();}
-    return;
-  }
-  const afterShow=()=>{
-    if(icon==='hourglass_empty'){
-      hgDraw();
-      if(T.running)hgStart(); else hgStop();
-    } else {
-      hgStop();
-    }
-  };
+  if(p.classList.contains('show')&&p.dataset.icon===icon)return;
+  const put=()=>{p.innerHTML=mi(icon);p.dataset.icon=icon;p.style.display='flex';p.classList.add('show');};
   if(p.classList.contains('show')){
     p.classList.add('hide');
-    setTimeout(()=>{
-      p.classList.remove('show','hide');p.style.display='';
-      p.innerHTML=pillIcon(icon);p.dataset.icon=icon;
-      p.style.display='flex';p.classList.add('show');
-      afterShow();
-    },220);
-  } else {
-    p.innerHTML=pillIcon(icon);p.dataset.icon=icon;
-    p.style.display='flex';p.classList.add('show');
-    afterShow();
-  }
-}
-function pillHide(){
-  const p=$('timerPill');if(!p||!p.classList.contains('show'))return;
-  hgStop();
-  p.classList.add('hide');
-  setTimeout(()=>{p.classList.remove('show','hide');p.style.display='';},220);
+    setTimeout(()=>{p.classList.remove('show','hide');put();},220);
+  }else put();
 }
 
 function updateTimerPill(){
@@ -1867,7 +1775,6 @@ function updateTimerPill(){
 
   // Rest countdown takes top priority
   if(R.active){
-    hgStop();
     const rem=Math.max(0,R.endsAt-Date.now());
     const txt=restFmt(rem);
     if(!p.classList.contains('show')){
@@ -2007,7 +1914,7 @@ function renderContent(){
         colBtn.classList.remove('open');
       }
       // Animate the card body instead of full re-render
-      const body=main.querySelector(`.cat-body[data-catid="${cat.id}"]`);
+      const body=[...main.querySelectorAll('.cat-body')].find(b=>b.dataset.catid===String(cat.id));
       if(body){
         if(isCollapsed){
           body.style.maxHeight=body.scrollHeight+'px';
@@ -2276,7 +2183,6 @@ function buildDayChart(exs,W,H){
   // Grid lines (3 horizontal) — label with raw weight values
   for(let i=0;i<=2;i++){
     const y=PAD.t+(cH/2)*i;
-    const val=(fromKg(sessionMaxW({sets:[],w:0}))||yMin+yRange*(1-i/2)).toFixed(1);
     const rawVal=(yMin+yRange*(1-i/2)).toFixed(1);
     svg+=`<line x1="${PAD.l}" y1="${y}" x2="${PAD.l+cW}" y2="${y}" stroke="var(--div)" stroke-width="1"/>`;
     svg+=`<text x="${PAD.l-4}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--t3)" font-family="-apple-system,sans-serif">${rawVal}</text>`;
@@ -2299,7 +2205,7 @@ function buildDayChart(exs,W,H){
     });
     if(!wPts.length)return;
     // Each exercise wrapped in a named group for interactive highlight
-    svg+=`<g class="ex-chart-grp" data-exid="${ex.id}" style="transition:opacity .22s">`;
+    svg+=`<g class="ex-chart-grp" data-exid="${esc(ex.id)}" style="transition:opacity .22s">`;
     if(wPts.length>1){
       let d=`M${wPts[0].x.toFixed(1)},${wPts[0].y.toFixed(1)}`;
       for(let i=1;i<wPts.length;i++){
@@ -2684,7 +2590,6 @@ function renderSettings(){
       S.features[f.k]=v;
       if(f.k==='restTimer'&&!v)stopRest();
       if(f.k==='progressCharts'&&!v&&showCharts){showCharts=false;}
-      if(f.k==='haptic'&&v){S.features.haptic=true;haptic([40]);}
       save();render();renderSettings();
     });
     row.appendChild(tog);
@@ -2714,51 +2619,9 @@ function renderSettings(){
     saveCfg(u,k);
     stLbl.textContent='✓ Connected';stLbl.className='cfg-st ok';
     supaFormOpen=false;
-    const localEmpty=S.plans.every(p=>p.exs.length===0&&p.days.length===0);
-    if(r==='empty'){
-      // Cloud is blank — push local up
-      supaSave(S);
-      showToast(localEmpty?'✓ Supabase connected':'✓ Connected — data backed up to cloud');
-      renderSettings();
-    } else {
-      // Cloud has data — fetch the row to get timestamp
-      const row=await supaLoad();
-      if(!row){supaSave(S);renderSettings();return;}
-      if(localEmpty){
-        // Nothing local — pull cloud silently
-        applyCloudData(row.data);
-        showToast('✓ Restored from cloud');
-        renderSettings();
-        return;
-      }
-      // Both have data — compare timestamps
-      const cloudTs=row.updatedAt?new Date(row.updatedAt):null;
-      const localTs=S.updatedAt?new Date(S.updatedAt):null;
-      if(cloudTs&&localTs){
-        if(cloudTs>localTs){
-          applyCloudData(row.data);showToast('✓ Synced from cloud');
-        } else {
-          supaSave(S);showToast('✓ Connected — local data is more recent, syncing up');
-        }
-        renderSettings();
-      } else {
-        // No timestamps — genuinely ambiguous, ask once
-        setTimeout(()=>{
-          openConfirm(
-            'Which data to keep?',
-            'Both this device and your cloud have workout data. Which one should be the source of truth?',
-            async()=>{
-              applyCloudData(row.data);
-              showToast('✓ Restored from cloud');renderSettings();
-            },
-            'Use Cloud'
-          );
-          const cancelBtn=$('confCancel');
-          cancelBtn.textContent='Keep Local';
-          cancelBtn.onclick=()=>{closeConfirm(false);supaSave(S);showToast('Local data synced to cloud');renderSettings();};
-        },400);
-      }
-    }
+    const out=await syncNow({quiet:true});
+    showToast({...SYNC_MSG,pushed:'✓ Connected — data backed up to cloud',error:'⚠ Connected, but the first sync failed — it will retry'}[out]||'✓ Supabase connected');
+    renderSettings();
   });
   form.appendChild(note);form.appendChild(urlIn);form.appendChild(keyIn);form.appendChild(svBtn);form.appendChild(stLbl);
   cCard.appendChild(form);
@@ -2781,7 +2644,7 @@ function renderSettings(){
   const impBtn=el('button','sp-action');impBtn.innerHTML=mi('upload')+' Import Backup';impBtn.addEventListener('click',()=>$('importFile').click());
   ir.appendChild(impBtn);dataCard.appendChild(ir);
   const rr=el('div','');rr.style.borderTop='1px solid var(--div)';
-  const rstCurBtn=el('button','sp-action danger');rstCurBtn.innerHTML=mi('restart_alt')+` Reset "${AP().name}" to Defaults`;
+  const rstCurBtn=el('button','sp-action danger');rstCurBtn.innerHTML=mi('restart_alt')+` Reset "${esc(AP().name)}" to Defaults`;
   rstCurBtn.addEventListener('click',()=>openConfirm(
     `Reset "${AP().name}"?`,
     'Replaces all days, categories and exercises in this plan with defaults. Your other plans are unaffected. The plan name stays the same.',
@@ -2950,43 +2813,14 @@ $('importFile').addEventListener('change',e=>{
   };r.readAsText(f);
 });
 
-window.addEventListener('online',()=>{if(hasSupa())supaSave(S);});
 
 /* ═══════════════════════════════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════════════════════════════ */
-// Normalise and apply cloud data blob into S, then save + render
-function applyCloudData(cloud){
-  if(!cloud.plans&&(cloud.days||cloud.exs)){
-    const pid=uid();
-    cloud.plans=[{id:pid,name:'My Plan',
-      activeDay:cloud.activeDay||cloud.days?.[0]?.id||'',
-      days:cloud.days||[],cats:cloud.cats||[],exs:cloud.exs||[]}];
-    cloud.activePlanId=pid;
-    delete cloud.days;delete cloud.cats;delete cloud.exs;delete cloud.activeDay;
-  }
-  if(!cloud.plans?.length)return false;
-  cloud.theme=cloud.theme||S.theme;
-  cloud.themeMode=cloud.themeMode||S.themeMode||'dark';
-  cloud.scheduleLight=cloud.scheduleLight||S.scheduleLight||'06:00';
-  cloud.scheduleDark=cloud.scheduleDark||S.scheduleDark||'22:00';
-  cloud.accentPreset=cloud.accentPreset||S.accentPreset||'indigo';
-  cloud.labelDark=cloud.labelDark||S.labelDark||LD[0];
-  cloud.labelLight=cloud.labelLight||S.labelLight||LL[0];
-  cloud.unit=cloud.unit||S.unit||'kg';
-  if(cloud.repMin==null)cloud.repMin=S.repMin??8;
-  if(cloud.repMax==null)cloud.repMax=S.repMax??12;
-  if(!cloud.activePlanId||!cloud.plans.find(p=>p.id===cloud.activePlanId))
-    cloud.activePlanId=cloud.plans[0].id;
-  cloud.plans.forEach(normalizePlan);
-  S=cloud;saveLocal();applyAll();render();
-  return true;
-}
-
 /* ═══════════════════════════════════════════════════════════════════════
    LANDSCAPE SPLIT VIEW
 ═══════════════════════════════════════════════════════════════════════ */
-let lsExId=null,lsRightMode='timer',lsSets=[],lsWeight=0;
+let lsRightMode='timer',wasLandscape=false;
 
 function isLandscape(){
   return window.innerWidth>window.innerHeight&&window.innerHeight<560;
@@ -3032,7 +2866,7 @@ function renderLandscape(){
     AP().cats.filter(c=>c.dayId===day.id).forEach(cat=>{
       const ch=el('div','ls-cat-hdr');ch.textContent=cat.name;list.appendChild(ch);
       AP().exs.filter(e=>e.catId===cat.id).forEach(ex=>{
-        const row=el('div','ls-ex-row'+(ex.id===lsExId?' active':''));
+        const row=el('div','ls-ex-row'+(lsRightMode==='session'&&ex.id===sess.exId?' active':''));
         const info=el('div','ls-ex-info');
         const nm=el('div','ls-ex-name');nm.textContent=ex.name;
         const last=el('div','ls-ex-last');last.textContent=lastLabel(ex)||'No sessions yet';
@@ -3041,11 +2875,8 @@ function renderLandscape(){
         badge.textContent=fmtW(ex.w);
         row.appendChild(info);row.appendChild(badge);
         row.addEventListener('click',()=>{
-          lsExId=ex.id;lsRightMode='session';
-          // Seed session state
-          lsWeight=ex.w;
-          const last2=ex.history?.filter(h=>!isToday(h.date)).at(-1);
-          lsSets=last2?last2.sets.map(s=>({...normSet(s,last2.w)})):[{w:lsWeight,r:S.repMin},{w:lsWeight,r:S.repMin},{w:lsWeight,r:S.repMin}];
+          if(!(lsRightMode==='session'&&sess.exId===ex.id))seedDraft(ex);   // same exercise → keep what was entered
+          lsRightMode='session';
           haptic([28]);
           renderLandscape();
         });
@@ -3063,7 +2894,7 @@ function renderLandscape(){
   const rtabs=el('div','ls-rtabs');
   ['session','timer'].forEach(t=>{
     const b=el('button','ls-rtab'+(lsRightMode===t?' active':''));
-    b.textContent=t==='session'?(lsExId?AP().exs.find(e=>e.id===lsExId)?.name||'Session':'Session'):'Timer';
+    b.textContent=t==='session'?(exById(sess.exId)?.name||'Session'):'Timer';
     b.addEventListener('click',()=>{lsRightMode=t;renderLandscape();});
     rtabs.appendChild(b);
   });
@@ -3078,60 +2909,56 @@ function renderLandscape(){
 }
 
 function renderLsSession(right){
-  if(!lsExId){
+  const ex=exById(sess.exId);
+  if(!ex){
     const empty=el('div','ls-empty');
     empty.innerHTML=`${mi('fitness_center')}<span>Tap an exercise to log a set</span>`;
     right.appendChild(empty);return;
   }
-  const ex=AP().exs.find(e=>e.id===lsExId);if(!ex)return;
   const wrap=el('div','ls-session');
 
   // Weight row
   const wrow=el('div','ls-wrow');
   const winfo=el('div','');winfo.style.cssText='flex:1;min-width:0';
   const wlbl=el('div','ls-wlbl');wlbl.textContent='Default Weight';
-  const wval=el('div','ls-wval');wval.textContent=fmtW(lsWeight);
+  const wval=el('div','ls-wval');wval.textContent=fmtW(sess.weight);
   winfo.appendChild(wlbl);winfo.appendChild(wval);
   const wd=el('button','ls-wbtn');wd.innerHTML=mi('remove');
   const wu=el('button','ls-wbtn');wu.innerHTML=mi('add');
   const wbig_d=el('button','ls-wbtn');wbig_d.innerHTML=mi('keyboard_double_arrow_down');
   const wbig_u=el('button','ls-wbtn');wbig_u.innerHTML=mi('keyboard_double_arrow_up');
-  const lsStep=(n)=>{const o=lsWeight,nw=stepWeight(lsWeight,n);lsWeight=nw;lsSets.forEach(s=>{if(Math.abs(s.w-o)<0.001)s.w=nw;});wval.textContent=fmtW(lsWeight);renderLsSets(setsWrap);haptic([28]);};
-  wd.addEventListener('click',()=>lsStep(-smStep()));
-  wu.addEventListener('click',()=>lsStep(+smStep()));
-  wbig_d.addEventListener('click',()=>lsStep(-bigStep()));
-  wbig_u.addEventListener('click',()=>lsStep(+bigStep()));
-  wval.addEventListener('click',()=>openWeightInput(lsWeight,v=>{const o=lsWeight;lsWeight=normalizeKg(v);lsSets.forEach(s=>{if(Math.abs(s.w-o)<0.001)s.w=lsWeight;});wval.textContent=fmtW(lsWeight);renderLsSets(setsWrap);haptic([28]);}));
+  const setsWrap=el('div','ls-sets');
+  const applyWeight=kg=>{setDraftWeight(kg);wval.textContent=fmtW(sess.weight);renderLsSets(setsWrap);haptic([28]);};
+  wd.addEventListener('click',()=>applyWeight(stepWeight(sess.weight,-smStep())));
+  wu.addEventListener('click',()=>applyWeight(stepWeight(sess.weight,+smStep())));
+  wbig_d.addEventListener('click',()=>applyWeight(stepWeight(sess.weight,-bigStep())));
+  wbig_u.addEventListener('click',()=>applyWeight(stepWeight(sess.weight,+bigStep())));
+  wval.addEventListener('click',()=>openWeightInput(sess.weight,applyWeight));
   wrow.appendChild(wbig_d);wrow.appendChild(wd);wrow.appendChild(winfo);wrow.appendChild(wu);wrow.appendChild(wbig_u);
   wrap.appendChild(wrow);
 
   // Set rows
-  const setsWrap=el('div','ls-sets');
   renderLsSets(setsWrap);
   wrap.appendChild(setsWrap);
 
   // Add set
   const addBtn=el('button','ls-add');addBtn.innerHTML=mi('add')+' Add Set';
   addBtn.addEventListener('click',()=>{
-    const last=lsSets[lsSets.length-1];
-    lsSets.push({w:last?.w??lsWeight,r:last?.r??S.repMin});
+    const last=sess.sets.at(-1);
+    sess.sets.push({w:last?.w??sess.weight,r:last?.r??S.repMin});
     renderLsSets(setsWrap);haptic([28]);
   });
   wrap.appendChild(addBtn);
 
   // Save
-  const saveBtn=el('button','ls-save');saveBtn.innerHTML=mi('check')+' Save Session';
+  const saveBtn=el('button','ls-save');saveBtn.innerHTML=mi('check')+(sess.edit?' Save Changes':' Save Session');
   saveBtn.addEventListener('click',()=>{
-    const valid=lsSets.filter(s=>s.r>0).map(s=>({w:normalizeKg(s.w),r:Math.max(1,Math.min(30,Math.round(s.r)))}));
-    if(!valid.length)return;
-    ex.w=valid.reduce((m,s)=>s.w>m?s.w:m,0);
-    ex.history.push({date:new Date().toISOString(),w:ex.w,sets:valid});
-    if(ex.history.length>50)ex.history=ex.history.slice(-50);
-    save();
+    const wasEdit=sess.edit,sets=commitDraft(ex);
+    if(!sets)return;
     haptic([35,25,35]);
-    showToast(valid.every(s=>s.r>=S.repMax)?`All ${S.repMax}s! 💪`:'Session saved');
-    startRest();
-    lsExId=null;lsRightMode='timer';
+    showToast(wasEdit?'Session updated':sets.every(s=>s.r>=S.repMax)?`All ${S.repMax}s! 💪`:'Session saved');
+    if(!wasEdit)startRest();
+    sess.exId=null;lsRightMode='timer';
     renderLandscape();
   });
   wrap.appendChild(saveBtn);
@@ -3140,27 +2967,27 @@ function renderLsSession(right){
 
 function renderLsSets(container){
   container.innerHTML='';
-  lsSets.forEach((set,i)=>{
+  sess.sets.forEach((set,i)=>{
     const row=el('div','ls-set-row');
     const num=el('div','ls-set-num');num.textContent='Set '+(i+1);
     const sw=el('button','ls-set-w');sw.textContent=fmtW(set.w);
-    sw.addEventListener('click',()=>openWeightInput(set.w,v=>{lsSets[i].w=normalizeKg(v);renderLsSets(container);}));
+    sw.addEventListener('click',()=>openWeightInput(set.w,v=>{set.w=v;renderLsSets(container);}));
     const reps=el('div','ls-reps');
     const rd=el('button','ls-rbtn');rd.innerHTML=mi('remove');
     const rn=el('div','ls-rnum');
     const ru=el('button','ls-rbtn');ru.innerHTML=mi('add');
-    const setRep=(r)=>{
-      lsSets[i].r=r;
+    const setRep=r=>{
+      set.r=r;
       rn.textContent=r;
       rn.className='ls-rnum'+(r>=S.repMax?' hit':r>=S.repMin?' ok':'');
       haptic([28]);
     };
     setRep(set.r);
-    rd.addEventListener('click',()=>setRep(Math.max(1,lsSets[i].r-1)));
-    ru.addEventListener('click',()=>setRep(Math.min(30,lsSets[i].r+1)));
+    rd.addEventListener('click',()=>setRep(Math.max(1,set.r-1)));
+    ru.addEventListener('click',()=>setRep(Math.min(30,set.r+1)));
     reps.appendChild(rd);reps.appendChild(rn);reps.appendChild(ru);
     const del=el('button','ls-rdel');del.innerHTML=mi('delete');
-    del.addEventListener('click',()=>{lsSets.splice(i,1);renderLsSets(container);});
+    del.addEventListener('click',()=>{sess.sets=sess.sets.filter(x=>x!==set);renderLsSets(container);});
     row.appendChild(num);row.appendChild(sw);row.appendChild(reps);row.appendChild(del);
     container.appendChild(row);
   });
@@ -3170,23 +2997,19 @@ function renderLsTimer(right){
   const wrap=el('div','ls-timer');
   const disp=el('div','ls-timer-disp');disp.id='lsTimerDisp';
   const cent=el('div','ls-timer-cent');cent.id='lsTimerCent';
-  const updateLsTimer=()=>{
-    const e=tNow();
-    disp.textContent=tFmt(e);
-    cent.textContent=tCentis(e);
-    if(T.running)requestAnimationFrame(updateLsTimer);
-  };
-  updateLsTimer();
-  if(T.running)requestAnimationFrame(updateLsTimer);
+  // One loop per render. It ends by itself once this panel has been replaced (no longer in the page) or the timer stops.
+  const paint=()=>{const e=tNow();disp.textContent=tFmt(e);cent.textContent=tCentis(e);};
+  const loop=()=>{if(!T.running||!disp.isConnected)return;paint();requestAnimationFrame(loop);};
+  paint();
+  if(T.running)requestAnimationFrame(loop);        // first frame runs after the panel has been attached
   const btns=el('div','ls-timer-btns');
-  const lap=el('button','ls-tbtn');lap.innerHTML=mi('replay');
-  lap.disabled=T.running||T.base===0;
+  const reset=el('button','ls-tbtn');reset.innerHTML=mi('replay');
+  reset.disabled=T.running||T.base===0;
   const play=el('button','ls-tbtn pri');play.innerHTML=mi(T.running?'pause':'play_arrow');
-  play.addEventListener('click',()=>{T.running?tPause():tStart();updateLsTimer();renderLandscape();});
-  lap.addEventListener('click',()=>{tReset();renderLandscape();});
-  btns.appendChild(lap);btns.appendChild(play);
+  play.addEventListener('click',()=>{T.running?tPause():tStart();renderLandscape();});
+  reset.addEventListener('click',()=>{tReset();renderLandscape();});
+  btns.appendChild(reset);btns.appendChild(play);
   wrap.appendChild(disp);wrap.appendChild(cent);wrap.appendChild(btns);
-  // Rest indicator
   if(R.active){
     const rest=el('div','');rest.style.cssText='font-size:12px;font-weight:600;color:var(--accent);padding:4px 12px;background:var(--accent-s);border-radius:var(--r-full)';
     rest.textContent='Resting…';wrap.appendChild(rest);
@@ -3194,49 +3017,32 @@ function renderLsTimer(right){
   right.appendChild(wrap);
 }
 
-// Orientation change listener
+// Orientation change: the draft follows the phone — open sheet → landscape panel → open sheet.
 function onResize(){
-  if(isLandscape()){renderLandscape();}
-  else{lsHide();}
+  const land=isLandscape();
+  if(land!==wasLandscape){
+    wasLandscape=land;
+    if(land){
+      if(sheetOpen()){hideSessionSheet();lsRightMode='session';}
+    }else{
+      const resume=lsRightMode==='session'&&sess.exId;
+      lsRightMode='timer';
+      render();                              // the portrait list is stale if something was saved in landscape
+      if(resume)showSessionSheet();
+      return;
+    }
+  }
+  if(land)renderLandscape();else lsHide();
 }
 window.addEventListener('resize',onResize);
 window.addEventListener('orientationchange',()=>setTimeout(onResize,150));
 
 async function init(){
   loadCfg();loadLocal();applyAll();render();
-  // Check landscape on startup
-  if(isLandscape())renderLandscape();
-  if(!hasSupa()||!navigator.onLine)return;
-  const row=await supaLoad();
-  if(!row){
-    // Cloud empty or unreachable — push local up if we have data
-    const hasLocal=S.plans.some(p=>p.exs.length>0||p.days.length>0);
-    if(hasLocal)supaSave(S);
-    return;
-  }
-  const localEmpty=S.plans.every(p=>p.exs.length===0&&p.days.length===0);
-  if(localEmpty){
-    // Nothing local — pull cloud silently
-    applyCloudData(row.data);
-    showToast('✓ Restored from cloud');
-    return;
-  }
-  // Both have data — compare timestamps to decide direction
-  const cloudTs=row.updatedAt?new Date(row.updatedAt):null;
-  const localTs=S.updatedAt?new Date(S.updatedAt):null;
-  if(cloudTs&&localTs){
-    if(cloudTs>localTs){
-      applyCloudData(row.data);
-      showToast('✓ Synced from cloud');
-    } else {
-      // Local is newer or equal — push up silently
-      supaSave(S);
-    }
-  } else {
-    // No timestamps to compare — cloud is already loaded, local has data.
-    // Default: push local up (user worked offline, now reconnected)
-    supaSave(S);
-  }
+  wasLandscape=isLandscape();
+  if(wasLandscape)renderLandscape();
+  try{navigator.storage?.persist?.();}catch(e){}            // ask the browser not to evict our data
+  backgroundSync();
 }
 init();
 </script>
