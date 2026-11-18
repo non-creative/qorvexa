@@ -622,7 +622,7 @@ body.em .add-cat-row{display:flex}
       </div>
     </div>
     <div class="ss-ghost hidden" id="ssGhost">
-      <div class="ss-ghost-lbl">Last Session</div>
+      <div class="ss-ghost-lbl" id="ssGhostLbl">Last Session</div>
       <div class="ss-ghost-sets" id="ssGhostSets"></div>
     </div>
     <div class="ss-sets" id="ssSets">
@@ -971,20 +971,28 @@ function sessionMaxW(h){
   if(!h.sets?.length)return fw;
   return h.sets.reduce((m,s)=>Math.max(m,normSet(s,fw).w),0)||fw;
 }
+function isToday(dateStr){return new Date(dateStr).toDateString()===new Date().toDateString();}
+/* The session to compare against: the most recent one from an EARLIER day. Today's sessions never
+   count, so re-opening an exercise after logging it still shows what was done last time. */
+function prevSession(ex){
+  const today=new Date().setHours(0,0,0,0);
+  let best=null,bestT=-Infinity;
+  for(const h of ex.history||[]){const t=new Date(h.date).getTime();if(t<today&&t>=bestT){best=h;bestT=t;}}
+  return best;
+}
 function isReady(ex){
-  if(!ex.history?.length)return false;
-  const prev=ex.history.filter(h=>!isToday(h.date));
-  if(!prev.length)return false;
-  const last=prev[prev.length-1];
-  return last.sets.every(s=>normSet(s,last.w).r>=S.repMax);
+  const p=prevSession(ex);
+  return!!p?.sets?.length&&p.sets.every(s=>normSet(s,p.w).r>=S.repMax);
+}
+function dayLabel(date){
+  const d=new Date(date),ds=d.toDateString(),t=new Date(),y=new Date(t);y.setDate(t.getDate()-1);
+  return ds===t.toDateString()?'Today':ds===y.toDateString()?'Yesterday':d.toLocaleDateString('en',{month:'short',day:'numeric'});
 }
 function lastLabel(ex){
   const last=ex.history?.at(-1);
   if(!last)return null;
-  const d=new Date(last.date),t=new Date(),y=new Date(t);y.setDate(t.getDate()-1);
-  const ds=d.toDateString()===t.toDateString()?'Today':d.toDateString()===y.toDateString()?'Yesterday':d.toLocaleDateString('en',{month:'short',day:'numeric'});
   const reps=last.sets.map(s=>normSet(s,last.w).r).join(', ');
-  return`${ds} · ${fmtW(sessionMaxW(last))} · ${reps} reps`;
+  return`${dayLabel(last.date)} · ${fmtW(sessionMaxW(last))} · ${reps} reps`;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -1529,7 +1537,6 @@ function est1RM(ex){
 const sess={exId:null,weight:0,sets:[],edit:false};      // sets: [{w (kg), r}]
 const exById=id=>AP().exs.find(e=>e.id===id)||null;
 const sheetOpen=()=>$('sessOverlay').classList.contains('open');
-function isToday(dateStr){return new Date(dateStr).toDateString()===new Date().toDateString();}
 
 /* Seed from the most recent session — today's included — so logging twice in a day
    (or in the other orientation) can never fall back to an older weight. */
@@ -1563,15 +1570,16 @@ function commitDraft(ex){
 
 function renderSessionSheet(){
   const ex=exById(sess.exId);if(!ex)return false;
-  const last=ex.history?.at(-1)||null;
+  const prev=prevSession(ex);              // "Last Session" = the most recent session before today
   $('ssTitle').textContent=ex.name;
   $('ssSub').textContent=sess.edit?'Editing today\'s session':(lastLabel(ex)||'No previous sessions');
   $('ssProgTxt').textContent=`All sets hit ${S.repMax} — ready to go up!`;
   $('ssSave').innerHTML=sess.edit?`<span class="mi">edit</span> Save Changes`:`<span class="mi">check</span> Save Session`;
-  if(!sess.edit&&last?.sets?.length){
+  if(prev?.sets?.length){
     $('ssGhost').classList.remove('hidden');
-    $('ssGhostSets').innerHTML=last.sets.map(s=>{
-      const n=normSet(s,last.w);
+    $('ssGhostLbl').textContent=`Last Session · ${dayLabel(prev.date)}`;
+    $('ssGhostSets').innerHTML=prev.sets.map(s=>{
+      const n=normSet(s,prev.w);
       return`<div class="ghost-chip${n.r>=S.repMax?' hit':''}"><span>${n.r}r</span><span class="ghost-chip-w">${fmtW(n.w)}</span></div>`;
     }).join('');
   }else $('ssGhost').classList.add('hidden');
